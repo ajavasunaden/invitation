@@ -3,35 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Undangan Pernikahan Premium - Aden & Siam</title>
+  <title>Undangan Pernikahan Aden & Siam</title>
   
-  <!-- Google Fonts: Kombinasi Serif Mewah & Sans-Serif Bersih -->
+  <!-- Google Fonts: Serif Mewah & Sans-Serif -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- AOS Library untuk Animasi Elemen saat Di-scroll -->
+  <!-- AOS Library untuk Animasi (Fixed Link) -->
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
   <style>
-    /* UTILITIES & BASE */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Montserrat', sans-serif;
       background-color: #f4f1ea;
       color: #4a4a4a;
       overflow-x: hidden;
     }
-    h1, h2, h3, .nama-pengantin {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 600;
-    }
+    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
 
-    /* CONTAINER UTAMA (MAKSIMAL UKURAN LAYAR HP AGAR RESPONSIVITAS TERJAGA) */
     .wrapper {
       max-width: 480px;
       margin: 0 auto;
@@ -41,14 +32,14 @@
       position: relative;
     }
 
-    /* 1. COVER / SAMBUTAN OVERLAY */
+    /* 1. COVER / OVERLAY */
     #cover-invitation {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55)), url('https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=1000') no-repeat center center/cover;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1000') no-repeat center center/cover;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -59,165 +50,57 @@
       text-align: center;
       padding: 30px;
     }
-    #cover-invitation h2 {
-      font-size: 1.5rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      font-weight: 300;
-      margin-bottom: 15px;
-    }
-    #cover-invitation h1 {
-      font-size: 3.5rem;
-      font-style: italic;
-      margin-bottom: 20px;
-    }
+    #cover-invitation h1 { font-size: 3.5rem; font-style: italic; margin-bottom: 20px; }
     .btn-open {
       padding: 12px 35px;
-      font-size: 0.9rem;
       background-color: #c5a880;
       color: white;
       border: none;
       border-radius: 30px;
       cursor: pointer;
-      font-family: 'Montserrat', sans-serif;
-      letter-spacing: 2px;
       text-transform: uppercase;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      transition: all 0.3s ease;
-    }
-    .btn-open:hover {
-      background-color: #b3956b;
-      transform: translateY(-2px);
-    }
-
-    /* COMMON SECTION STYLES */
-    section {
-      padding: 80px 30px;
-      text-align: center;
-    }
-    .section-title {
-      font-size: 2.5rem;
-      color: #8c765c;
-      margin-bottom: 15px;
-    }
-    .section-subtitle {
-      font-size: 0.85rem;
       letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #9b9b9b;
-      margin-bottom: 40px;
+      font-weight: 600;
     }
 
     /* 2. HERO SECTION */
-    .hero-sec {
-      background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.95)), url('https://www.transparenttextures.com/patterns/cream-paper.png');
-      min-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .hero-sec h3 {
-      font-size: 1.2rem;
-      letter-spacing: 4px;
-      color: #8c765c;
-      margin-bottom: 20px;
-    }
-    .hero-sec h2 {
-      font-size: 4rem;
-      color: #5c4d3c;
-      margin: 15px 0;
-    }
-
-    /* 3. MEMPELAI SECTION */
-    .mempelai-box {
-      margin-bottom: 40px;
-    }
-    .mempelai-nama {
-      font-size: 2.2rem;
-      color: #8c765c;
-      margin: 10px 0 5px 0;
-    }
-    .mempelai-ortu {
-      font-size: 0.85rem;
-      color: #7a7a7a;
-      line-height: 1.6;
-      font-style: italic;
-    }
-    .ampersand {
-      font-size: 2.5rem;
-      font-family: 'Cormorant Garamond', serif;
-      color: #b3956b;
-      margin: 20px 0;
-    }
-
-    /* 4. COUNTDOWN TIMER */
+    section { padding: 60px 25px; text-align: center; }
+    .hero-sec { padding: 100px 25px; background: #fffaf5; }
+    .hero-sec h2 { font-size: 3.5rem; color: #5c4d3c; margin: 10px 0; }
+    
+    /* 3. COUNTDOWN */
     .countdown-container {
       display: flex;
       justify-content: space-around;
       margin-top: 30px;
       background: #fdfbf7;
-      padding: 20px 10px;
+      padding: 20px;
       border-radius: 12px;
       border: 1px solid #eae5da;
     }
-    .countdown-item {
-      text-align: center;
-    }
-    .countdown-number {
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: #8c765c;
-      font-family: 'Cormorant Garamond', serif;
-    }
-    .countdown-label {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #9b9b9b;
-      margin-top: 5px;
-    }
+    .countdown-number { font-size: 1.5rem; font-weight: 600; color: #8c765c; display: block; }
+    .countdown-label { font-size: 0.7rem; text-transform: uppercase; color: #9b9b9b; }
 
-    /* 5. ACARA DETAIL CARD */
+    /* 4. MEMPELAI */
+    .mempelai-nama { font-size: 2.2rem; color: #8c765c; margin: 10px 0; }
+    .ampersand { font-size: 2.5rem; color: #b3956b; margin: 20px 0; }
+
+    /* 5. ACARA */
     .event-card {
       background: #fdfbf7;
       border: 1px solid #eae5da;
       border-radius: 15px;
-      padding: 35px 20px;
-      margin-bottom: 30px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.02);
-    }
-    .event-card h3 {
-      font-size: 1.8rem;
-      color: #5c4d3c;
-      margin-bottom: 15px;
-    }
-    .event-card p {
-      font-size: 0.9rem;
-      line-height: 1.7;
-      margin-bottom: 5px;
+      padding: 30px 20px;
+      margin-bottom: 20px;
     }
 
-    /* 6. BUKU TAMU / RSVP */
-    .guestbook-box {
-      background: #fdfbf7;
-      border: 1px solid #eae5da;
-      border-radius: 15px;
-      padding: 25px 20px;
-      text-align: left;
-    }
+    /* 6. GUESTBOOK */
     .input-field {
       width: 100%;
-      padding: 12px 15px;
-      margin-bottom: 15px;
+      padding: 12px;
+      margin-bottom: 10px;
       border: 1px solid #dcd6c8;
       border-radius: 8px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.85rem;
-      background-color: #fff;
-    }
-    .input-field:focus {
-      outline: none;
-      border-color: #c5a880;
     }
     .btn-submit {
       width: 100%;
@@ -226,248 +109,131 @@
       color: white;
       border: none;
       border-radius: 8px;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 500;
       cursor: pointer;
-      letter-spacing: 1px;
-      transition: background 0.3s;
-    }
-    .btn-submit:hover {
-      background-color: #736049;
-    }
-    .comments-display {
-      margin-top: 25px;
-      max-height: 250px;
-      overflow-y: auto;
-      font-size: 0.85rem;
-    }
-    .comment-item {
-      padding: 12px 0;
-      border-bottom: 1px solid #eee5d4;
     }
 
-    /* FLOATING MUSIC CONTROL BUTTON */
+    /* MUSIC BTN */
     #music-btn {
       position: fixed;
-      bottom: 25px;
-      right: calc(50% - 220px); /* Memosisikan tombol agar tetap di sisi kanan wrapper kontainer HP */
-      width: 44px;
-      height: 44px;
-      background-color: rgba(140, 118, 92, 0.95);
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: #8c765c;
       color: white;
       border-radius: 50%;
       display: none;
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      z-index: 9999;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      font-size: 1.1rem;
-    }
-    
-    /* Penyesuaian tombol musik di layar yang sangat kecil */
-    @media (max-width: 500px) {
-      #music-btn {
-        right: 20px;
-      }
+      z-index: 999;
+      font-size: 1.5rem;
     }
   </style>
 </head>
 <body>
 
-  <!-- ELEMENT PEMUTAR AUDIO -->
-  <!-- Audio diatur loop (berulang otomatis) dengan sumber instrumen lagu Amin Paling Serius -->
   <audio id="bg-audio" loop>
     <source src="https://archive.org/download/amin-paling-serius-instrumental/Amin%20Paling%20Serius%20-%20Instrumental.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- TOMBAL AUDIO TERAPUNG -->
   <div id="music-btn" onclick="toggleAudio()">🎵</div>
 
   <div class="wrapper">
-    
-    <!-- LAYER COVER PEMBUKA -->
     <div id="cover-invitation">
-      <h2>The Wedding Of</h2>
+      <p style="letter-spacing: 3px; text-transform: uppercase;">Undangan Pernikahan</p>
       <h1>Aden & Siam</h1>
-      <p style="font-size: 0.85rem; letter-spacing: 3px; margin-bottom: 30px;">23 . 12 . 2026</p>
       <button class="btn-open" onclick="openInvitation()">Buka Undangan</button>
     </div>
 
-    <!-- HERO SECTION -->
     <section class="hero-sec">
-      <h3 data-aos="fade-up">Walimatul 'Ursy</h3>
+      <p data-aos="fade-up">The Wedding of</p>
       <h2 data-aos="fade-up" data-aos-delay="200">Aden & Siam</h2>
-      <p data-aos="fade-up" data-aos-delay="400" style="letter-spacing: 2px; font-size: 0.9rem; color: #7a7a7a;">Rabu, 23 Desember 2026</p>
+      <p data-aos="fade-up" data-aos-delay="400">Sabtu, 12 Desember 2026</p>
       
-      <!-- COUNTDOWN TIMER CONTAINER -->
-      <div class="countdown-container" data-aos="fade-up" data-aos-delay="500">
-        <div class="countdown-item">
-          <div class="countdown-number" id="days">00</div>
-          <div class="countdown-label">Hari</div>
-        </div>
-        <div class="countdown-item">
-          <div class="countdown-number" id="hours">00</div>
-          <div class="countdown-label">Jam</div>
-        </div>
-        <div class="countdown-item">
-          <div class="countdown-number" id="minutes">00</div>
-          <div class="countdown-label">Menit</div>
-        </div>
-        <div class="countdown-item">
-          <div class="countdown-number" id="seconds">00</div>
-          <div class="countdown-label">Detik</div>
-        </div>
+      <div class="countdown-container" data-aos="zoom-in">
+        <div class="countdown-item"><span class="countdown-number" id="days">00</span><span class="countdown-label">Hari</span></div>
+        <div class="countdown-item"><span class="countdown-number" id="hours">00</span><span class="countdown-label">Jam</span></div>
+        <div class="countdown-item"><span class="countdown-number" id="minutes">00</span><span class="countdown-label">Menit</span></div>
+        <div class="countdown-item"><span class="countdown-number" id="seconds">00</span><span class="countdown-label">Detik</span></div>
       </div>
     </section>
 
-    <!-- MEMPELAI SECTION -->
-    <section style="background-color: #fdfbf7;">
-      <h2 class="section-title" data-aos="fade-up">Mempelai</h2>
-      <p class="section-subtitle" data-aos="fade-up">Kami yang Berbahagia</p>
-
-      <div class="mempelai-box" data-aos="fade-right">
-        <h3 class="mempelai-nama">Aden Kurniawan, S.Kom</h3>
-        <p class="mempelai-ortu">Putra dari Bapak Ahmad Syaifuddin<br>& Ibu Siti Aminah</p>
-      </div>
-
-      <div class="ampersand" data-aos="zoom-in">&</div>
-
-      <div class="mempelai-box" data-aos="fade-left">
-        <h3 class="mempelai-nama">Siam Permatasari, S.Ds</h3>
-        <p class="mempelai-ortu">Putri dari Bapak Bambang Triyono<br>& Ibu Endang Rahayu</p>
-      </div>
-    </section>
-
-    <!-- DETAIL ACARA SECTION -->
     <section>
-      <h2 class="section-title" data-aos="fade-up">Rangkaian Acara</h2>
-      <p class="section-subtitle" data-aos="fade-up">Waktu dan Lokasi Pelaksanaan</p>
+      <h2 data-aos="fade-up">Mempelai</h2>
+      <div data-aos="fade-right">
+        <h3 class="mempelai-nama">Aden Prasetyo</h3>
+        <p>Putra Bapak Ahmad & Ibu Siti</p>
+      </div>
+      <div class="ampersand" data-aos="zoom-in">&</div>
+      <div data-aos="fade-left">
+        <h3 class="mempelai-nama">Siam Rahmawati</h3>
+        <p>Putri Bapak Bambang & Ibu Endang</p>
+      </div>
+    </section>
 
+    <section style="background: #fffaf5;">
+      <h2 data-aos="fade-up">Acara</h2>
       <div class="event-card" data-aos="fade-up">
         <h3>Akad Nikah</h3>
-        <p><strong>Waktu:</strong> Pukul 08.00 - 10.00 WIB</p>
-        <p><strong>Tempat:</strong> Kediaman Mempelai Wanita</p>
-        <p style="color: #7a7a7a; font-size: 0.8rem;">Kecamatan Banguntapan, Bantul, Yogyakarta</p>
+        <p>08.00 - 10.00 WIB</p>
+        <p>Masjid Agung Yogyakarta</p>
       </div>
-
       <div class="event-card" data-aos="fade-up" data-aos-delay="200">
-        <h3>Resepsi Pernikahan</h3>
-        <p><strong>Waktu:</strong> Pukul 11.00 - 14.00 WIB</p>
-        <p><strong>Tempat:</strong> Gedung Jogja Expo Center (JEC)</p>
-        <p style="color: #7a7a7a; font-size: 0.8rem;">Jl. Raya Janti, Banguntapan, Bantul</p>
+        <h3>Resepsi</h3>
+        <p>11.00 - Selesai</p>
+        <p>Gedung Serbaguna Utama</p>
       </div>
     </section>
 
-    <!-- BUKU TAMU / UCAPAN (RSVP) -->
-    <section style="background-color: #fdfbf7; border-top: 1px solid #eae5da;">
-      <h2 class="section-title" data-aos="fade-up">Ucapan & Doa</h2>
-      <p class="section-subtitle" data-aos="fade-up">Berikan Doa Restu Anda</p>
-
-      <div class="guestbook-box" data-aos="fade-up">
-        <input type="text" id="guestName" class="input-field" placeholder="Nama Anda" required>
-        <textarea id="guestMessage" class="input-field" rows="4" placeholder="Tulis ucapan selamat dan doa restu di sini..." required></textarea>
-        <button class="btn-submit" onclick="submitMessage()">Kirim Ucapan</button>
-
-        <div class="comments-display" id="commentsArea">
-          <div class="comment-item">
-            <p style="font-weight: 600; color: #5c4d3c;">Rian & Keluarga</p>
-            <p style="color: #666; margin-top: 3px;">Selamat ya Aden dan Siam! Semoga menjadi keluarga yang sakinah, mawaddah, warahmah. Amin paling serius untuk kebahagiaan kalian berdua!</p>
-          </div>
-        </div>
+    <section>
+      <h2>Buku Tamu</h2>
+      <div style="text-align: left; background: #fdfbf7; padding: 20px; border-radius: 10px;">
+        <input type="text" id="name" class="input-field" placeholder="Nama">
+        <textarea id="msg" class="input-field" rows="3" placeholder="Ucapan"></textarea>
+        <button class="btn-submit" onclick="addMsg()">Kirim</button>
+        <div id="chat" style="margin-top: 20px; font-size: 0.9rem;"></div>
       </div>
     </section>
-
   </div>
 
-  <!-- AOS ANIMATION SCRIPT -->
-  <script src="https://unpkg.com/aos@next/dist/dist/aos.js"></script>
-  
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
-    // Inisialisasi library animasi AOS
-    AOS.init({
-      duration: 1000,
-      once: true
-    });
+    AOS.init({ duration: 1000, once: true });
+    const audio = document.getElementById('bg-audio');
 
-    const audioTrack = document.getElementById('bg-audio');
-    const coverLayout = document.getElementById('cover-invitation');
-    const floatingMusicBtn = document.getElementById('music-btn');
-
-    // 1. FUNGSI UNTUK MEMBUKA UNDANGAN
     function openInvitation() {
-      // Menggeser layar pembuka ke atas
-      coverLayout.style.transform = 'translateY(-100%)';
-      
-      // Putar lagu pengiring
-      audioTrack.play().catch(err => {
-        console.log("Pencegahan otomatisasi browser aktif, musik berjalan setelah interaksi manual.");
-      });
-
-      // Tampilkan ikon tombol pemutar musik kontrol
-      floatingMusicBtn.style.display = 'flex';
+      document.getElementById('cover-invitation').style.transform = 'translateY(-100%)';
+      audio.play();
+      document.getElementById('music-btn').style.display = 'flex';
     }
 
-    // 2. CONTROLLER TOMBOL AUDIO PLAY / PAUSE
     function toggleAudio() {
-      if (audioTrack.paused) {
-        audioTrack.play();
-        floatingMusicBtn.innerText = "🎵";
-      } else {
-        audioTrack.pause();
-        floatingMusicBtn.innerText = "🔇";
-      }
+      if (audio.paused) { audio.play(); document.getElementById('music-btn').innerText = "🎵"; }
+      else { audio.pause(); document.getElementById('music-btn').innerText = "🔇"; }
     }
 
-    // 3. LOGIKA COUNTDOWN TIMER PERNIKAHAN
-    // Target Tanggal Pernikahan (Format: Month DD, YYYY HH:MM:SS)
-    const targetWeddingDate = new Date("December 23, 2026 08:00:00").getTime();
-
-    const countdownInterval = setInterval(function() {
+    // Timer
+    const target = new Date("Dec 12, 2026 08:00:00").getTime();
+    setInterval(() => {
       const now = new Date().getTime();
-      const difference = targetWeddingDate - now;
-
-      // Perhitungan waktu Matematika dasar
-      const d = Math.floor(difference / (1000 * 60 * 60 * 24));
-      const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-      const s = Math.floor((difference % (1000 * 60)) / 1000);
-
-      // Tampilkan hasil ke elemen HTML terkait
-      document.getElementById("days").innerText = d < 10 ? "0" + d : d;
-      document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
-      document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
-      document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
-
-      // Jika hitung mundur selesai
-      if (difference < 0) {
-        clearInterval(countdownInterval);
-        document.querySelector(".countdown-container").innerHTML = "<p style='color:#8c765c; font-weight:600; padding:10px;'>Acara Telah Berlangsung</p>";
-      }
+      const diff = target - now;
+      document.getElementById('days').innerText = Math.floor(diff / (1000*60*60*24));
+      document.getElementById('hours').innerText = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+      document.getElementById('minutes').innerText = Math.floor((diff % (1000*60*60)) / (1000*60));
+      document.getElementById('seconds').innerText = Math.floor((diff % (1000*60)) / 1000);
     }, 1000);
 
-    // 4. MANIPULASI DOM UNTUK SISTEM UCAPAN GUESTBOOK (SIMULASI FRONT-END)
-    function submitMessage() {
-      const name = document.getElementById('guestName').value;
-      const msg = document.getElementById('guestMessage').value;
-      const targetArea = document.getElementById('commentsArea');
-
-      if (!name || !msg) {
-        alert('Harap isi Nama dan Pesan ucapan Anda terlebih dahulu.');
-        return;
+    function addMsg() {
+      const n = document.getElementById('name').value;
+      const m = document.getElementById('msg').value;
+      if(n && m) {
+        const p = document.createElement('p');
+        p.innerHTML = `<b>${n}</b>: ${m}`;
+        document.getElementById('chat').prepend(p);
+        document.getElementById('name').value = '';
+        document.getElementById('msg').value = '';
       }
-
-      // Membangun elemen komentar baru secara Siammis
-      const newComment = document.createElement('div');
-      newComment.className = 'comment-item';
-      newComment.innerHTML = `<p style="font-weight:600; color:#5c4d3c;">${name}</p><p style="color:#666; margin-top:3px;">${msg}</p>`;
-      
-      // Tempatkan di bagian paling atas tumpukan komentar
-      targetArea.insertBefore(newComment, targetArea.firstChild);
-
-      // Kosongkan kembali input setelah berhasil dikirim
-      document.getElementById('guestName').value = '';
-      document.getElementById('guestMessage').value = '';
     }
   </script>
 </body>
