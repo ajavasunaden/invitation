@@ -1,0 +1,24 @@
+<!-- Elemen Audio Tersembunyi -->
+<audio id="audioUndangan" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  Browser kamu tidak mendukung audio HTML5.
+</audio>
+
+<!-- Tombol Interaksi Utama -->
+<button id="tombolBuka" onclick="mulaiUndangan()" style="padding: 12px 24px; font-size: 16px; cursor: pointer;">
+  Buka Undangan
+</button>
+
+<script>
+function mulaiUndangan() {
+  const audio = document.getElementById('audioUndangan');
+  
+  // Memutar audio setelah tombol diklik
+  audio.play().catch(error => {
+    console.log("Autoplay dicegah oleh browser, membutuhkan interaksi lebih lanjut.");
+  });
+
+  // Sembunyikan tombol buka undangan atau lanjutkan animasi gulir ke bawah
+  document.getElementById('tombolBuka').style.display = 'none';
+}
+</script>
