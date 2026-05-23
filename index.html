@@ -1,24 +1,311 @@
-<!-- Elemen Audio Tersembunyi -->
-<audio id="audioUndangan" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-  Browser kamu tidak mendukung audio HTML5.
-</audio>
-
-<!-- Tombol Interaksi Utama -->
-<button id="tombolBuka" onclick="mulaiUndangan()" style="padding: 12px 24px; font-size: 16px; cursor: pointer;">
-  Buka Undangan
-</button>
-
-<script>
-function mulaiUndangan() {
-  const audio = document.getElementById('audioUndangan');
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Undangan Pernikahan Digital</title>
   
-  // Memutar audio setelah tombol diklik
-  audio.play().catch(error => {
-    console.log("Autoplay dicegah oleh browser, membutuhkan interaksi lebih lanjut.");
-  });
+  <!-- Menggunakan Font Estetik dari Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
-  // Sembunyikan tombol buka undangan atau lanjutkan animasi gulir ke bawah
-  document.getElementById('tombolBuka').style.display = 'none';
-}
-</script>
+  <style>
+    /* RESET & BASE STYLES */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f7f5f0;
+      color: #333;
+      overflow-x: hidden;
+    }
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* OVERLAY / SCREEN PEMBUKA */
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1000') no-repeat center center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      z-index: 9999;
+      transition: transform 0.8s ease-in-out;
+      text-align: center;
+      padding: 20px;
+    }
+    #overlay h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    #overlay p {
+      font-size: 1rem;
+      letter-spacing: 2px;
+      margin-bottom: 30px;
+    }
+    .btn-buka {
+      padding: 12px 30px;
+      font-size: 1rem;
+      background-color: #d4af37;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: 0.3s;
+    }
+    .btn-buka:hover {
+      background-color: #bfa030;
+      transform: scale(1.05);
+    }
+
+    /* UTAMA / MAIN CONTENT */
+    .container {
+      max-width: 500px; /* Dioptimalkan agar pas di layar HP */
+      margin: 0 auto;
+      background-color: #ffffff;
+      min-height: 100vh;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    }
+
+    /* HERO SECTION */
+    .hero {
+      padding: 80px 20px;
+      text-align: center;
+      background-color: #faf8f5;
+    }
+    .hero h2 {
+      font-size: 2.2rem;
+      color: #8a764d;
+      margin: 20px 0;
+    }
+    .hero p {
+      font-size: 0.9rem;
+      color: #777;
+      letter-spacing: 1px;
+    }
+
+    /* ACARA SECTION */
+    .acara {
+      padding: 60px 20px;
+      text-align: center;
+      background-color: #ffffff;
+    }
+    .card-acara {
+      background-color: #fcfbfa;
+      border: 1px solid #eae6df;
+      padding: 30px 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+    .card-acara h3 {
+      font-size: 1.5rem;
+      color: #8a764d;
+      margin-bottom: 10px;
+    }
+    .card-acara p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    /* BUKU TAMU SECTION */
+    .buku-tamu {
+      padding: 60px 20px;
+      text-align: center;
+      background-color: #faf8f5;
+    }
+    .buku-tamu h2 {
+      margin-bottom: 20px;
+      color: #8a764d;
+    }
+    /* Kotak komentar tiruan (bisa diganti kode embed Disqus/Google Form iframe) */
+    .komentar-box {
+      width: 100%;
+      background: white;
+      border: 1px solid #eae6df;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: left;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .btn-kirim {
+      background-color: #8a764d;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* MUSIK KONTROL FLOATING */
+    #musik-kontrol {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 45px;
+      height: 45px;
+      background-color: rgba(138, 118, 77, 0.9);
+      color: white;
+      border-radius: 50%;
+      display: none; /* Muncul setelah overlay dibuka */
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ELEMENT AUDIO -->
+  <!-- Menggunakan instrumen piano lagu 'Amin Paling Serius' dari repositori publik gratis sebagai contoh -->
+  <audio id="backsound" loop>
+    <source src="https://archive.org/download/amin-paling-serius-instrumental/Amin%20Paling%20Serius%20-%20Instrumental.mp3" type="audio/mpeg">
+    Browser tidak mendukung pemutar audio.
+  </audio>
+
+  <!-- TOMBOL MUSIK FLOATING -->
+  <div id="musik-kontrol" onclick="toggleMusik()">🎵</div>
+
+  <!-- SCREEN OVERLAY / PEMBUKA -->
+  <div id="overlay">
+    <p>UNDANGAN PERNIKAHAN</p>
+    <h1>Rama & Sinta</h1>
+    <p>Kepada Bapak/Ibu/Saudara/i</p>
+    <button class="btn-buka" onclick="bukaUndangan()">Buka Undangan</button>
+  </div>
+
+  <!-- ISI UNDANGAN UTAMA -->
+  <div class="container">
+    
+    <!-- HERO -->
+    <section class="hero">
+      <p>THE WEDDING OF</p>
+      <h2>Rama & Sinta</h2>
+      <p>23 DESEMBER 2026</p>
+    </section>
+
+    <!-- DETAIL ACARA -->
+    <section class="acara">
+      <h2>Momen Bahagia</h2>
+      
+      <div class="card-acara">
+        <h3>Akad Nikah</h3>
+        <p><strong>Pukul:</strong> 08.00 - 10.00 WIB</p>
+        <p><strong>Tempat:</strong> Masjid Agung Kota</p>
+        <p>Jl. Pangeran Mangkubumi No. 1</p>
+      </div>
+
+      <div class="card-acara">
+        <h3>Resepsi</h3>
+        <p><strong>Pukul:</strong> 11.00 - 14.00 WIB</p>
+        <p><strong>Tempat:</strong> Gedung Serbaguna Sakinah</p>
+        <p>Jl. Ringroad Barat Kilo 5</p>
+      </div>
+    </section>
+
+    <!-- BUKU TAMU / UCAPAN -->
+    <section class="buku-tamu">
+      <h2>Doa Restu</h2>
+      <p style="margin-bottom: 20px; font-size: 0.9rem;">Berikan ucapan selamat & konfirmasi kehadiran Anda</p>
+      
+      <div class="komentar-box">
+        <!-- Catatan: Untuk proyek asli, area ini bisa diganti dengan kode sematan (embed) dari Disqus atau Google Form -->
+        <div class="form-group">
+          <input type="text" id="namaTamu" placeholder="Nama Anda" required>
+        </div>
+        <div class="form-group">
+          <textarea id="pesanTamu" rows="3" placeholder="Tulis ucapan & doa restu..." required></textarea>
+        </div>
+        <button class="btn-kirim" onclick="kirimUcapan()">Kirim Ucapan</button>
+        
+        <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eae6df;">
+        <div id="daftar-ucapan" style="font-size: 0.9rem; line-height: 1.5;">
+          <p><strong>Budi:</strong> Selamat menempuh hidup baru Rama dan Sinta! Bahagia selamanya. 🙌</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- JAVASCRIPT UNTUK INTERAKSI -->
+  <script>
+    const audio = document.getElementById('backsound');
+    const overlay = document.getElementById('overlay');
+    const tombolMusik = document.getElementById('musik-kontrol');
+
+    // Fungsi membuka undangan dan memutar musik
+    function bukaUndangan() {
+      // Sembunyikan layar pembuka dengan efek geser ke atas
+      overlay.style.transform = 'translateY(-100%)';
+      
+      // Putar lagu Amin Paling Serius
+      audio.play().catch(error => {
+        console.log("Autoplay ditolak sistem browser. Membutuhkan interaksi pengguna.");
+      });
+
+      // Tampilkan tombol kontrol musik di pojok kanan bawah
+      tombolMusik.style.display = 'flex';
+    }
+
+    // Fungsi menyalakan/mematikan musik secara manual
+    function toggleMusik() {
+      if (audio.paused) {
+        audio.play();
+        tombolMusik.innerText = "🎵";
+      } else {
+        audio.pause();
+        tombolMusik.innerText = "🔇";
+      }
+    }
+
+    // Fungsi sederhana simulasi kirim ucapan
+    function kirimUcapan() {
+      const nama = document.getElementById('namaTamu').value;
+      const pesan = document.getElementById('pesanTamu').value;
+      const daftar = document.getElementById('daftar-ucapan');
+
+      if(nama === '' || pesan === '') {
+        alert('Harap isi nama dan ucapan Anda.');
+        return;
+      }
+
+      // Tambahkan ucapan baru ke daftar di bawahnya
+      const ucapanBaru = document.createElement('p');
+      ucapanBaru.innerHTML = `<strong>${nama}:</strong> ${pesan}`;
+      ucapanBaru.style.marginTop = "10px";
+      daftar.insertBefore(ucapanBaru, daftar.firstChild);
+
+      // Kosongkan form
+      document.getElementById('namaTamu').value = '';
+      document.getElementById('pesanTamu').value = '';
+    }
+  </script>
+</body>
+</html>
